@@ -1,4 +1,5 @@
 import Card from "./component/Card";
+import List from "./component/List";
   function App(){
       const user = {
       name: 'John Doe',
@@ -7,7 +8,10 @@ import Card from "./component/Card";
     }
   return (
     <div className="App">
+      <div>
       <Card user={user} />
+    </div>
+    <List />
     </div>
   );
     
