@@ -1,33 +1,67 @@
-import React from 'react';
+import React,{useState} from 'react';
 import "../styles/form.css"
-class MyForm extends React.Component {
-  handleSubmit = (event) => {
-    event.preventDefault(); 
-    const email = event.target.elements.email.value;
-    const firstName = event.target.elements.firstName.value;
-    const lastName = event.target.elements.lastName.value;
-    const phone = event.target.elements.phone.value;
-    const password = event.target.elements.password.value;
-    alert(`Email: ${email}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nPhone: ${phone}\nPassword: ${password}`);
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="email">Email: <input type="email" id="email" name="email" required /></label>
-       
-        <label htmlFor="firstName">First Name:<input type="text" id="firstName" name="firstName" pattern="[a-zA-Z]+" required /></label>
-        
-        <label htmlFor="lastName">Last Name:<input type="text" id="lastName" name="lastName" pattern="[a-zA-Z]+" required /></label>
-        
-        <label htmlFor="phone">Phone Number:<input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required /></label>
-        
-        <label htmlFor="password">Password:<input type="password" id="password" name="password" required /></label>
-        
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+function MyForm(){
+    const[email,setEmail] = useState("");
+    const[name,setName] = useState("");
+    const[lastname,setLastname] = useState("");
+    const[phone,setPhone] = useState("");
+    const[password,setPassword] = useState("");
+    var phonepattern = /^[0-9]+$/;
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        alert("It works!")
+    }
+    function handleEmailChange(n){
+        setEmail(n.target.value)
+    }
+    function handleNameChange(n){
+        setName(n.target.value)
+    }
+    function handleLastNameChange(n){
+        setLastname(n.target.value)
+    }
+    function handlePhonenumberChange(n){
+        if(n.target.value.match(phonepattern)){
+            setPhone(n.target.value)
+        }else{
+            setPhone("")
+        }
+    }
+    function handlePasswordChange(n){
+        setPassword(n.target.value)
+    }
+    return(
+        <div className="form">
+            <h1>REGISTER</h1>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Email Address:
+                    <input type="text" name="email" placeholder="Enter email" value={email} onChange={handleEmailChange} required />
+                    </label>
+                    <br/>
+                    <label>
+                    Name:
+                    <input type="text" name="name" placeholder="Enter name" value={name} onChange={handleNameChange} required />
+                    </label>
+                    <br/>
+                    <label>
+                    Lastname:
+                    <input type="text" name="lastname" placeholder="Enter lastname" value={lastname} onChange={handleLastNameChange} required />
+                    </label>
+                    <br/>
+                    <label>
+                    Phone Number
+                    <input type="tel" pattern="^\d{10}$" name="phone" placeholder="Enter Phone Number" value={phone} onChange={handlePhonenumberChange}required/>
+                    </label>
+                    <br/>
+                    <label>
+                    Password:
+                    <input type="password" name="password" placeholder="Password" value={password} onChange={handlePasswordChange} required/>
+                    <br/>
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    )
 }
-
 export default MyForm;

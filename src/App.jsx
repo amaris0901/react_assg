@@ -17,7 +17,7 @@ import MyForm from "./component/MyForm";
     <TypeMe /> 
     
     <div className="Form">
-      <h2>Register</h2>
+ 
       <MyForm />
     </div>
     </div>
